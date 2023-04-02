@@ -1,0 +1,72 @@
+#inlcude<iostream>
+using namespace std;
+
+int successfullPairs(int arr[],int brr[],int n,int m,long long success){
+    int count = 0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(arr[i]*brr[j]==success){
+                count++;
+            }
+        }
+        
+    }
+    return count;
+}
+
+int main(){
+    int arr[10]={3,2,4,1,5,7,8,9,6,10};
+    int brr[13] = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    long long success = 8;
+    cout<<successfullPairs(arr,brr,10,13,success);
+    return 0;
+}
+
+/*
+vector<int> successfulpairs(vector<int> arr, vector<int> brr, long long success){
+    vector<int> ans;
+    long long count;
+for(int i = 0; i<arr.size(); i++){}
+for(int j = 0; j<brr.size(); j++){
+    if(arr[i]>=success || brr[j]>=success){
+        count++;
+        break;
+    }
+    if(arr[i]*brr[j]==success){
+        count++;
+    }
+    ans.push_back(count);
+    count = 0;
+}
+return ans;
+}
+*/
+
+
+/*OPTIMAL SOLUTION
+vector<int> successfulPairs(vector<int> spells, vector<int> potions, long long success) {
+    int first = spells.size();
+        int second = potions.size();
+        vector<int> ans(first,0);
+    sort(potions.begin(),potions.end());
+    for(int i = 0; i<first;i++){
+        int change = spells[i];
+
+        int start = 0;
+        int end = second - 1;
+        while (start <= end) {
+                int mid = start + (end - start) / 2;
+                long long product = (long long) change * (long long)potions[mid];
+                if (product >= success) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+            ans[i] = second - start;
+        }
+        return ans;
+    }
+    
+}
+*/
